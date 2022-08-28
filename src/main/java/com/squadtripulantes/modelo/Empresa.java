@@ -3,7 +3,7 @@ package com.squadtripulantes.modelo;
 import java.util.Date;
 
 public class Empresa {
-    public String id;
+    public long id;
     public String nombre;
     public String documento;
     public String telefono;
