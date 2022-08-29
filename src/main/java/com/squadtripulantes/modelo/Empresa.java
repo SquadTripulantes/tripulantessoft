@@ -11,7 +11,7 @@ public class Empresa {
     public Date modificadoEn;
 
 
-    public empresa(String id, String nombre, String telefono, Empleado usuario, Date creadoEn, Date modificadoEn) {
+    public Empresa(String id, String nombre, String telefono, Empleado usuario, Date creadoEn, Date modificadoEn) {
         this.id = id;
         this.nombre = nombre;
         this.telefono = telefono;
