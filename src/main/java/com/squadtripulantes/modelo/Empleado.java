@@ -73,9 +73,13 @@ public class Empleado {
 
     public Transaccion getTransaccion() {
         return transaccion;
+
+
     }
 
     public void setTransaccion(Transaccion transaccion) {
+
+
         this.transaccion = transaccion;
     }
 
