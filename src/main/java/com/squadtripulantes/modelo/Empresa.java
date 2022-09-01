@@ -1,6 +1,7 @@
 package com.squadtripulantes.modelo;
 
 import java.util.Date;
+import java.util.List;
 
 public class Empresa {
     public long id;
@@ -8,18 +9,14 @@ public class Empresa {
     public String documento;
     public String telefono;
     public String direccion;
-    public Empleado usuario;
-
-    public  MovimientoDinero [] movimientoDinero;
+    public List<Empleado> usuario;
+    public List<MovimientoDinero> movimientoDinero;
     public Date creadoEn;
     public Date modificadoEn;
 
 
-<<<<<<< HEAD
-    public Empresa(String id, String nombre, String telefono, Empleado usuario, Date creadoEn, Date modificadoEn) {
-=======
-    public Empresa(String id, String nombre, String documento, String telefono, String direccion, Empleado usuario, MovimientoDinero [] movimientoDinero, Date creadoEn, Date modificadoEn) {
->>>>>>> 2a05652dddcb0c10857b03e70a0806e60d2be0a3
+
+    public Empresa(long id, String nombre, String documento, String telefono, String direccion, List<Empleado> usuario , List<MovimientoDinero>  movimientoDinero, Date creadoEn, Date modificadoEn) {
         this.id = id;
         this.nombre = nombre;
         this.documento = documento;
@@ -31,11 +28,11 @@ public class Empresa {
         this.modificadoEn = modificadoEn;
     }
 
-    public String getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -71,19 +68,19 @@ public class Empresa {
         this.direccion = direccion;
     }
 
-    public Empleado getUsuario() {
+    public List<Empleado> getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(Empleado usuario) {
+    public void setUsuario(List<Empleado> usuario) {
         this.usuario = usuario;
     }
 
-    public MovimientoDinero[] getMovimientoDinero() {
+    public List<MovimientoDinero> getMovimientoDinero() {
         return movimientoDinero;
     }
 
-    public void setMovimientoDinero(MovimientoDinero[] movimientoDinero) {
+    public void setMovimientoDinero(List<MovimientoDinero> movimientoDinero) {
         this.movimientoDinero = movimientoDinero;
     }
 
