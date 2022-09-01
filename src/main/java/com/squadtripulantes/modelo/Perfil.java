@@ -3,12 +3,12 @@ package com.squadtripulantes.modelo;
 import java.util.Date;
 
 public class Perfil {
-    public String id;
-    public String imagen;
-    public String telefono;
-    public Empleado usuario;
-    public Date creadoEn;
-    public Date modificadoEn;
+	private String id;
+	private String imagen;
+	private String telefono;
+	private Empleado usuario;
+	private Date creadoEn;
+	private Date modificadoEn;
 
 
     public Perfil(String id, String imagen, String telefono, Empleado usuario, Date creadoEn, Date modificadoEn) {

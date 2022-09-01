@@ -4,25 +4,25 @@ import java.util.Date;
 import java.util.List;
 
 public class Empleado {
-    public long id;
+    private long id;
 
-    public String email;
+    private String email;
 
-    public Perfil perfil;
+    private Perfil perfil;
 
-    public RolEmpleo nombreEmpleo;
+    private RolEmpleo nombreEmpleo;
 
-    public Empresa empresa;
+    private Empresa empresa;
 
-    public List<Transaccion> transaccion;
+    private List<MovimientoDinero> transaccion;
 
-    public Date modificadoEn;
+    private Date modificadoEn;
 
-    public Date creadoEn;
+    private Date creadoEn;
 
     
 	public Empleado(long id, String email, Perfil perfil, RolEmpleo nombreEmpleo, Empresa empresa,
-			List<Transaccion> transaccion, Date modificadoEn, Date creadoEn) {
+			List<MovimientoDinero> transaccion, Date modificadoEn, Date creadoEn) {
 		this.id = id;
 		this.email = email;
 		this.perfil = perfil;
@@ -73,11 +73,11 @@ public class Empleado {
 		this.empresa = empresa;
 	}
 
-	public List<Transaccion> getTransaccion() {
+	public List<MovimientoDinero> getTransaccion() {
 		return transaccion;
 	}
 
-	public void setTransaccion(List<Transaccion> transaccion) {
+	public void setTransaccion(List<MovimientoDinero> transaccion) {
 		this.transaccion = transaccion;
 	}
 

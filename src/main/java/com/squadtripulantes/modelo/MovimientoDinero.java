@@ -3,13 +3,13 @@ package com.squadtripulantes.modelo;
 import java.util.Date;
 
 public class MovimientoDinero {
-    public long String ;
-    public String concepto;
-    public float monto;
-    public Empleado usuario;
-    public  Empresa empresa;
-    public Date creadoEn;
-    public Date modificadoEn;
+	private long String ;
+	private String concepto;
+	private float monto;
+	private Empleado usuario;
+	private  Empresa empresa;
+	private Date creadoEn;
+	private Date modificadoEn;
 
     public MovimientoDinero(long string, java.lang.String concepto, float monto, Empleado usuario, Empresa empresa, Date creadoEn, Date modificadoEn) {
         String = string;

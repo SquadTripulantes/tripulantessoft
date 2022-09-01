@@ -4,15 +4,15 @@ import java.util.Date;
 import java.util.List;
 
 public class Empresa {
-    public long id;
-    public String nombre;
-    public String documento;
-    public String telefono;
-    public String direccion;
-    public List<Empleado> usuario;
-    public List<MovimientoDinero> movimientoDinero;
-    public Date creadoEn;
-    public Date modificadoEn;
+	private long id;
+	private String nombre;
+	private String documento;
+	private String telefono;
+    private String direccion;
+    private List<Empleado> usuario;
+    private List<MovimientoDinero> movimientoDinero;
+    private Date creadoEn;
+    private Date modificadoEn;
 
 
 
