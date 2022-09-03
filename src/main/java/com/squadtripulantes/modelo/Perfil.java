@@ -10,6 +10,8 @@ public class Perfil {
 	private Date creadoEn;
 	private Date modificadoEn;
 
+    public Perfil() {
+    }
 
     public Perfil(String id, String imagen, String telefono, Empleado usuario, Date creadoEn, Date modificadoEn) {
         this.id = id;
@@ -66,5 +68,17 @@ public class Perfil {
 
     public void setModificadoEn(Date modificadoEn) {
         this.modificadoEn = modificadoEn;
+    }
+
+    @Override
+    public String toString() {
+        return "Perfil{" +
+                "id='" + id + '\'' +
+                ", imagen='" + imagen + '\'' +
+                ", telefono='" + telefono + '\'' +
+                ", usuario=" + usuario +
+                ", creadoEn=" + creadoEn +
+                ", modificadoEn=" + modificadoEn +
+                '}';
     }
 }
