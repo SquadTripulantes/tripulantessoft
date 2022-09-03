@@ -14,7 +14,8 @@ public class Empresa {
     private Date creadoEn;
     private Date modificadoEn;
 
-
+    public Empresa() {
+    }
 
     public Empresa(long id, String nombre, String documento, String telefono, String direccion, List<Empleado> usuario , List<MovimientoDinero>  movimientoDinero, Date creadoEn, Date modificadoEn) {
         this.id = id;
@@ -98,5 +99,20 @@ public class Empresa {
 
     public void setModificadoEn(Date modificadoEn) {
         this.modificadoEn = modificadoEn;
+    }
+
+    @Override
+    public String toString() {
+        return "Empresa{" +
+                "id=" + id +
+                ", nombre='" + nombre + '\'' +
+                ", documento='" + documento + '\'' +
+                ", telefono='" + telefono + '\'' +
+                ", direccion='" + direccion + '\'' +
+                ", usuario=" + usuario +
+                ", movimientoDinero=" + movimientoDinero +
+                ", creadoEn=" + creadoEn +
+                ", modificadoEn=" + modificadoEn +
+                '}';
     }
 }
