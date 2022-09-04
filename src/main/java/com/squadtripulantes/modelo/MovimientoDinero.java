@@ -3,19 +3,19 @@ package com.squadtripulantes.modelo;
 import java.util.Date;
 
 public class MovimientoDinero {
-	private long String ;
+	private long id ;
 	private String concepto;
 	private float monto;
 	private Empleado usuario;
 	private  Empresa empresa;
 	private Date creadoEn;
 	private Date modificadoEn;
-
+  
     public MovimientoDinero() {
     }
 
-    public MovimientoDinero(long string, java.lang.String concepto, float monto, Empleado usuario, Empresa empresa, Date creadoEn, Date modificadoEn) {
-        String = string;
+    public MovimientoDinero(long id, java.lang.String concepto, float monto, Empleado usuario, Empresa empresa, Date creadoEn, Date modificadoEn) {
+        this.id = id;
         this.concepto = concepto;
         this.monto = monto;
         this.usuario = usuario;
@@ -25,11 +25,11 @@ public class MovimientoDinero {
     }
 
     public long getString() {
-        return String;
+        return id;
     }
 
-    public void setString(long string) {
-        String = string;
+    public void setString(long id) {
+        this.id = id;
     }
 
     public java.lang.String getConcepto() {
