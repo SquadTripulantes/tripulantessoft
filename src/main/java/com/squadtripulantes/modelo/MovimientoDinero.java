@@ -10,6 +10,9 @@ public class MovimientoDinero {
 	private  Empresa empresa;
 	private Date creadoEn;
 	private Date modificadoEn;
+  
+    public MovimientoDinero() {
+    }
 
     public MovimientoDinero(long id, java.lang.String concepto, float monto, Empleado usuario, Empresa empresa, Date creadoEn, Date modificadoEn) {
         this.id = id;
@@ -75,5 +78,18 @@ public class MovimientoDinero {
 
     public void setModificadoEn(Date modificadoEn) {
         this.modificadoEn = modificadoEn;
+    }
+
+    @Override
+    public java.lang.String toString() {
+        return "MovimientoDinero{" +
+                "String=" + String +
+                ", concepto='" + concepto + '\'' +
+                ", monto=" + monto +
+                ", usuario=" + usuario +
+                ", empresa=" + empresa +
+                ", creadoEn=" + creadoEn +
+                ", modificadoEn=" + modificadoEn +
+                '}';
     }
 }

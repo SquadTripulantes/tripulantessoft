@@ -20,9 +20,11 @@ public class Empleado {
 
     private Date creadoEn;
 
-    
+	public Empleado() {
+	}
+
 	public Empleado(long id, String email, Perfil perfil, RolEmpleo nombreEmpleo, Empresa empresa,
-			List<MovimientoDinero> transaccion, Date modificadoEn, Date creadoEn) {
+					List<MovimientoDinero> transaccion, Date modificadoEn, Date creadoEn) {
 		this.id = id;
 		this.email = email;
 		this.perfil = perfil;
@@ -97,6 +99,17 @@ public class Empleado {
 		this.creadoEn = creadoEn;
 	}
 
-
-  
+	@Override
+	public String toString() {
+		return "Empleado{" +
+				"id=" + id +
+				", email='" + email + '\'' +
+				", perfil=" + perfil +
+				", nombreEmpleo=" + nombreEmpleo +
+				", empresa=" + empresa +
+				", transaccion=" + transaccion +
+				", modificadoEn=" + modificadoEn +
+				", creadoEn=" + creadoEn +
+				'}';
+	}
 }
