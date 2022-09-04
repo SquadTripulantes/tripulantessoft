@@ -83,7 +83,7 @@ public class MovimientoDinero {
     @Override
     public java.lang.String toString() {
         return "MovimientoDinero{" +
-                "String=" + String +
+                "id=" + id +
                 ", concepto='" + concepto + '\'' +
                 ", monto=" + monto +
                 ", usuario=" + usuario +
