@@ -2,12 +2,34 @@ package com.squadtripulantes.modelo;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "perfil")
 public class Perfil {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(unique =true)
 	private String id;
+	@Column(nullable = true)
 	private String imagen;
+	@Column(nullable = true)
 	private String telefono;
+	
+	
+	@OneToOne(mappedBy="perfil")
 	private Empleado usuario;
+	
+	@Column(nullable = true)
 	private Date creadoEn;
+	@Column(nullable = true)
 	private Date modificadoEn;
 
     public Perfil() {

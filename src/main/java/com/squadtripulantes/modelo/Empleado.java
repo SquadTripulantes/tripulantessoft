@@ -3,28 +3,46 @@ package com.squadtripulantes.modelo;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+@Entity
+@Table(name = "empleado")
 public class Empleado {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(unique = true)
     private long id;
-
+	@Column(nullable = false, unique = true)
     private String email;
 
+	@JoinColumn(name = "perfil_id")
+	@OneToOne
     private Perfil perfil;
-
+	
+    @Enumerated(EnumType.STRING)
     private RolEmpleo nombreEmpleo;
+    @Column(nullable = false)
+    private String empresa;
 
-    private Empresa empresa;
-
-    private List<MovimientoDinero> transaccion;
-
+    private String transaccion;
+    @Column(nullable = true)
     private Date modificadoEn;
-
+    @Column(nullable = true)
     private Date creadoEn;
 
 	public Empleado() {
 	}
 
-	public Empleado(long id, String email, Perfil perfil, RolEmpleo nombreEmpleo, Empresa empresa,
-					List<MovimientoDinero> transaccion, Date modificadoEn, Date creadoEn) {
+	public Empleado(long id, String email, Perfil perfil, RolEmpleo nombreEmpleo, String empresa,
+					String transaccion, Date modificadoEn, Date creadoEn) {
 		this.id = id;
 		this.email = email;
 		this.perfil = perfil;
@@ -67,19 +85,19 @@ public class Empleado {
 		this.nombreEmpleo = nombreEmpleo;
 	}
 
-	public Empresa getEmpresa() {
+	public String getEmpresa() {
 		return empresa;
 	}
 
-	public void setEmpresa(Empresa empresa) {
+	public void setEmpresa(String empresa) {
 		this.empresa = empresa;
 	}
 
-	public List<MovimientoDinero> getTransaccion() {
+	public String getTransaccion() {
 		return transaccion;
 	}
 
-	public void setTransaccion(List<MovimientoDinero> transaccion) {
+	public void setTransaccion(String transaccion) {
 		this.transaccion = transaccion;
 	}
 
