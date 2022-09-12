@@ -22,10 +22,11 @@ public class Perfil {
 	private String imagen;
 	@Column(nullable = true)
 	private String telefono;
-//	@OneToOne
-//	@JoinColumn(name = "id")
-	@Column(nullable = true)
-	private String usuario;
+	
+	
+	@OneToOne(mappedBy="perfil")
+	private Empleado usuario;
+	
 	@Column(nullable = true)
 	private Date creadoEn;
 	@Column(nullable = true)
@@ -34,7 +35,7 @@ public class Perfil {
     public Perfil() {
     }
 
-    public Perfil(String id, String imagen, String telefono, String usuario, Date creadoEn, Date modificadoEn) {
+    public Perfil(String id, String imagen, String telefono, Empleado usuario, Date creadoEn, Date modificadoEn) {
         this.id = id;
         this.imagen = imagen;
         this.telefono = telefono;
@@ -67,11 +68,11 @@ public class Perfil {
         this.telefono = telefono;
     }
 
-    public String getUsuario() {
+    public Empleado getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(String usuario) {
+    public void setUsuario(Empleado usuario) {
         this.usuario = usuario;
     }
 
