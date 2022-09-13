@@ -1,39 +1,47 @@
 package com.squadtripulantes.controlador;
 
 import com.squadtripulantes.modelo.*;
+import com.squadtripulantes.repositorio.EmpleadoRepositorio;
+import com.squadtripulantes.servicios.EmpleadoServicio;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
+import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class EmpleadoControlador {
+	
+	@Autowired
+	private EmpleadoServicio empleadoServicio;
 
     @GetMapping("/users")
-    public Empleado getEmpleado()
+    public List<Empleado> getEmpleado()
     {
-        return new Empleado(0, null, null, null, null,
-            null, null,null);
+        return this.empleadoServicio.listarEmpleados();
     }
     @PostMapping("/users")
     public Empleado crearEmpleado(@RequestBody Empleado empleado)
     {
-        return empleado;
+        return this.empleadoServicio.crearEmpleado(empleado);
     }
 
     @GetMapping("/user/{id}")
-    public Empleado consultarEmpleado(@PathVariable("id") long index)
+    public Optional<Empleado> consultarEmpleado(@PathVariable("id") long id)
     {
-        return new Empleado();
+        return this.empleadoServicio.buscarEmpleado(id);
     }
 
     @PatchMapping("/user/{id}")
-    public Empleado modificarEmpleado(@PathVariable("id") long index,@RequestBody Empleado empleado)
+    public Empleado modificarEmpleado(@PathVariable("id") long id, @RequestBody Empleado empleado)
     {
-        return  empleado;
+        return  this.empleadoServicio.actualizarEmpleado(id, empleado);
     }
     @DeleteMapping("/user/{id}")
-    public boolean eliminarEmpleado(@PathVariable("id") long index)
+    public boolean eliminarEmpleado(@PathVariable("id") long id)
     {
-        return true;
+        return this.empleadoServicio.eliminarEmpleados(id);
     }
 }

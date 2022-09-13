@@ -3,6 +3,7 @@ package com.squadtripulantes.modelo;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -20,19 +21,25 @@ public class Empleado {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(unique = true)
     private long id;
+	
 	@Column(nullable = false, unique = true)
     private String email;
 
-	@JoinColumn(name = "perfil_id")
-	@OneToOne
+	
+	@OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "perfil_id")
     private Perfil perfil;
 	
-    @Enumerated(EnumType.STRING)
-    private RolEmpleo nombreEmpleo;
+    @Enumerated(EnumType.STRING)	
+    @Column(nullable = false)
+    private RolEmpleado rolEmpleado;
+    
     @Column(nullable = false)
     private String empresa;
 
+    @Column(nullable = false)
     private String transaccion;
+    
     @Column(nullable = true)
     private Date modificadoEn;
     @Column(nullable = true)
@@ -41,12 +48,12 @@ public class Empleado {
 	public Empleado() {
 	}
 
-	public Empleado(long id, String email, Perfil perfil, RolEmpleo nombreEmpleo, String empresa,
+	public Empleado(long id, String email, Perfil perfil, RolEmpleado rolEmpleado, String empresa,
 					String transaccion, Date modificadoEn, Date creadoEn) {
 		this.id = id;
 		this.email = email;
 		this.perfil = perfil;
-		this.nombreEmpleo = nombreEmpleo;
+		this.rolEmpleado = rolEmpleado;
 		this.empresa = empresa;
 		this.transaccion = transaccion;
 		this.modificadoEn = modificadoEn;
@@ -77,12 +84,12 @@ public class Empleado {
 		this.perfil = perfil;
 	}
 
-	public RolEmpleo getNombreEmpleo() {
-		return nombreEmpleo;
+	public RolEmpleado getRolEmpleado() {
+		return rolEmpleado;
 	}
 
-	public void setNombreEmpleo(RolEmpleo nombreEmpleo) {
-		this.nombreEmpleo = nombreEmpleo;
+	public void setRolEmpleado(RolEmpleado rolEmpleado) {
+		this.rolEmpleado = rolEmpleado;
 	}
 
 	public String getEmpresa() {
@@ -123,7 +130,7 @@ public class Empleado {
 				"id=" + id +
 				", email='" + email + '\'' +
 				", perfil=" + perfil +
-				", nombreEmpleo=" + nombreEmpleo +
+				", nombreEmpleo=" + rolEmpleado +
 				", empresa=" + empresa +
 				", transaccion=" + transaccion +
 				", modificadoEn=" + modificadoEn +
