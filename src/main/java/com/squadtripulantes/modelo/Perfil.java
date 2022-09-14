@@ -2,31 +2,52 @@ package com.squadtripulantes.modelo;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "perfil")
 public class Perfil {
-	private String id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(unique =true)
+	private long id;
+	@Column(nullable = true)
 	private String imagen;
+	@Column(nullable = true)
 	private String telefono;
-	private Empleado usuario;
+		
+	//@OneToOne(mappedBy = "usuario")
+	//private Empleado usuario;
+	
+	@Column(nullable = true)
 	private Date creadoEn;
+	@Column(nullable = true)
 	private Date modificadoEn;
 
     public Perfil() {
     }
 
-    public Perfil(String id, String imagen, String telefono, Empleado usuario, Date creadoEn, Date modificadoEn) {
+    public Perfil(long id, String imagen, String telefono, Date creadoEn, Date modificadoEn) {
         this.id = id;
         this.imagen = imagen;
         this.telefono = telefono;
-        this.usuario = usuario;
         this.creadoEn = creadoEn;
         this.modificadoEn = modificadoEn;
     }
 
-    public String getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -44,14 +65,6 @@ public class Perfil {
 
     public void setTelefono(String telefono) {
         this.telefono = telefono;
-    }
-
-    public Empleado getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Empleado usuario) {
-        this.usuario = usuario;
     }
 
     public Date getCreadoEn() {
@@ -76,7 +89,6 @@ public class Perfil {
                 "id='" + id + '\'' +
                 ", imagen='" + imagen + '\'' +
                 ", telefono='" + telefono + '\'' +
-                ", usuario=" + usuario +
                 ", creadoEn=" + creadoEn +
                 ", modificadoEn=" + modificadoEn +
                 '}';

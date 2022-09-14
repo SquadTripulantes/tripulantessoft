@@ -1,9 +1,8 @@
 package com.squadtripulantes.controlador;
 import com.squadtripulantes.modelo.*;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.Date;
-
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class EmpresaControlador {
@@ -36,6 +35,4 @@ public class EmpresaControlador {
     {
         return true;
     }
-
-
 }
