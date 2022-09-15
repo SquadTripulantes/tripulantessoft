@@ -3,30 +3,61 @@ package com.squadtripulantes.modelo;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+@Entity
+@Table(name = "empleado")
 public class Empleado {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(unique = true)
     private long id;
-
+	
+	@Column(nullable = false, unique = true)
     private String email;
 
+	
+	@OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "perfil_id")
     private Perfil perfil;
-
-    private RolEmpleo nombreEmpleo;
-
+	
+    @Enumerated(EnumType.STRING)	
+    @Column(nullable = false)
+    private RolEmpleado rolEmpleado;
+    
+    
+    @ManyToOne
+    @JoinColumn(name = "empresa_id")
     private Empresa empresa;
 
-    private List<MovimientoDinero> transaccion;
-
+    @ManyToOne
+    @JoinColumn(name = "transaccion_id")
+    private MovimientoDinero transaccion;
+    
+    @Column(nullable = true)
     private Date modificadoEn;
-
+    @Column(nullable = true)
     private Date creadoEn;
 
-    
-	public Empleado(long id, String email, Perfil perfil, RolEmpleo nombreEmpleo, Empresa empresa,
-			List<MovimientoDinero> transaccion, Date modificadoEn, Date creadoEn) {
+	public Empleado() {
+	}
+
+	public Empleado(long id, String email, Perfil perfil, RolEmpleado rolEmpleado, Empresa empresa,
+					MovimientoDinero transaccion, Date modificadoEn, Date creadoEn) {
 		this.id = id;
 		this.email = email;
 		this.perfil = perfil;
-		this.nombreEmpleo = nombreEmpleo;
+		this.rolEmpleado = rolEmpleado;
 		this.empresa = empresa;
 		this.transaccion = transaccion;
 		this.modificadoEn = modificadoEn;
@@ -57,12 +88,12 @@ public class Empleado {
 		this.perfil = perfil;
 	}
 
-	public RolEmpleo getNombreEmpleo() {
-		return nombreEmpleo;
+	public RolEmpleado getRolEmpleado() {
+		return rolEmpleado;
 	}
 
-	public void setNombreEmpleo(RolEmpleo nombreEmpleo) {
-		this.nombreEmpleo = nombreEmpleo;
+	public void setRolEmpleado(RolEmpleado rolEmpleado) {
+		this.rolEmpleado = rolEmpleado;
 	}
 
 	public Empresa getEmpresa() {
@@ -73,11 +104,11 @@ public class Empleado {
 		this.empresa = empresa;
 	}
 
-	public List<MovimientoDinero> getTransaccion() {
+	public MovimientoDinero getTransaccion() {
 		return transaccion;
 	}
 
-	public void setTransaccion(List<MovimientoDinero> transaccion) {
+	public void setTransaccion(MovimientoDinero transaccion) {
 		this.transaccion = transaccion;
 	}
 
@@ -97,6 +128,17 @@ public class Empleado {
 		this.creadoEn = creadoEn;
 	}
 
-
-  
+	@Override
+	public String toString() {
+		return "Empleado{" +
+				"id=" + id +
+				", email='" + email + '\'' +
+				", perfil=" + perfil +
+				", nombreEmpleo=" + rolEmpleado +
+//				", empresa=" + empresa +
+//				", transaccion=" + transaccion +
+				", modificadoEn=" + modificadoEn +
+				", creadoEn=" + creadoEn +
+				'}';
+	}
 }
