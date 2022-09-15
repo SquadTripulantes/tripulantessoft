@@ -12,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 @Entity
@@ -34,11 +35,14 @@ public class Empleado {
     @Column(nullable = false)
     private RolEmpleado rolEmpleado;
     
-    @Column(nullable = false)
-    private String empresa;
+    
+    @ManyToOne
+    @JoinColumn(name = "empresa_id")
+    private Empresa empresa;
 
-    @Column(nullable = false)
-    private String transaccion;
+    @ManyToOne
+    @JoinColumn(name = "transaccion_id")
+    private MovimientoDinero transaccion;
     
     @Column(nullable = true)
     private Date modificadoEn;
@@ -48,8 +52,8 @@ public class Empleado {
 	public Empleado() {
 	}
 
-	public Empleado(long id, String email, Perfil perfil, RolEmpleado rolEmpleado, String empresa,
-					String transaccion, Date modificadoEn, Date creadoEn) {
+	public Empleado(long id, String email, Perfil perfil, RolEmpleado rolEmpleado, Empresa empresa,
+					MovimientoDinero transaccion, Date modificadoEn, Date creadoEn) {
 		this.id = id;
 		this.email = email;
 		this.perfil = perfil;
@@ -92,19 +96,19 @@ public class Empleado {
 		this.rolEmpleado = rolEmpleado;
 	}
 
-	public String getEmpresa() {
+	public Empresa getEmpresa() {
 		return empresa;
 	}
 
-	public void setEmpresa(String empresa) {
+	public void setEmpresa(Empresa empresa) {
 		this.empresa = empresa;
 	}
 
-	public String getTransaccion() {
+	public MovimientoDinero getTransaccion() {
 		return transaccion;
 	}
 
-	public void setTransaccion(String transaccion) {
+	public void setTransaccion(MovimientoDinero transaccion) {
 		this.transaccion = transaccion;
 	}
 
@@ -131,8 +135,8 @@ public class Empleado {
 				", email='" + email + '\'' +
 				", perfil=" + perfil +
 				", nombreEmpleo=" + rolEmpleado +
-				", empresa=" + empresa +
-				", transaccion=" + transaccion +
+//				", empresa=" + empresa +
+//				", transaccion=" + transaccion +
 				", modificadoEn=" + modificadoEn +
 				", creadoEn=" + creadoEn +
 				'}';

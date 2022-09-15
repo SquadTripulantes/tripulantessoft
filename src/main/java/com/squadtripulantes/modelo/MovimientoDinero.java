@@ -2,23 +2,50 @@ package com.squadtripulantes.modelo;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "movimientoDinero")
 public class MovimientoDinero {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id ;
+	
+	@Column(nullable = false)
 	private String concepto;
+	@Column(nullable = false)
 	private float monto;
-	private Empleado usuario;
+	
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@JoinColumn(name = "empleado_id", referencedColumnName = "id", nullable = false)
+	private Empleado empleado;
+	
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@JoinColumn(name = "empresa_id", referencedColumnName = "id", nullable = false)
 	private  Empresa empresa;
+	
+	@Column(nullable = true)
 	private Date creadoEn;
+	@Column(nullable = true)
 	private Date modificadoEn;
   
     public MovimientoDinero() {
     }
 
-    public MovimientoDinero(long id, java.lang.String concepto, float monto, Empleado usuario, Empresa empresa, Date creadoEn, Date modificadoEn) {
+    public MovimientoDinero(long id, java.lang.String concepto, float monto, Empleado usuario, Empresa empresa , Date creadoEn, Date modificadoEn) {
         this.id = id;
         this.concepto = concepto;
         this.monto = monto;
-        this.usuario = usuario;
+        this.empleado = usuario;
         this.empresa = empresa;
         this.creadoEn = creadoEn;
         this.modificadoEn = modificadoEn;
@@ -49,11 +76,11 @@ public class MovimientoDinero {
     }
 
     public Empleado getUsuario() {
-        return usuario;
+        return empleado;
     }
 
     public void setUsuario(Empleado usuario) {
-        this.usuario = usuario;
+        this.empleado = usuario;
     }
 
     public Empresa getEmpresa() {
@@ -86,7 +113,7 @@ public class MovimientoDinero {
                 "id=" + id +
                 ", concepto='" + concepto + '\'' +
                 ", monto=" + monto +
-                ", usuario=" + usuario +
+                ", usuario=" + empleado +
                 ", empresa=" + empresa +
                 ", creadoEn=" + creadoEn +
                 ", modificadoEn=" + modificadoEn +
