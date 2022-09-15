@@ -10,7 +10,7 @@ public class EmpresaControlador {
     @GetMapping("/enterprise")
     public Empresa getEmpresa()
     {
-        return new Empresa(0, null, null, null, null, null, null, null);
+        return new Empresa(0, null, null, null, null, null, null, null,null);
     }
     @PostMapping("/enterprise")
     public Empresa crearEmpresa(@RequestBody Empresa empresa)
