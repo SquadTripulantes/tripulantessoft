@@ -8,11 +8,13 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 @Entity
@@ -26,24 +28,22 @@ public class Empleado {
 	@Column(nullable = false, unique = true)
     private String email;
 
+
+    @Enumerated(EnumType.STRING)	
+    @Column(nullable = false)
+    private RolEmpleado rolEmpleado;
 	
 	@OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "perfil_id")
     private Perfil perfil;
-	
-    @Enumerated(EnumType.STRING)	
-    @Column(nullable = false)
-    private RolEmpleado rolEmpleado;
-    
-    
+	        
     @ManyToOne
     @JoinColumn(name = "empresa_id")
     private Empresa empresa;
 
-    @ManyToOne
-    @JoinColumn(name = "transaccion_id")
-    private MovimientoDinero transaccion;
-    
+//    @OneToMany(mappedBy = "empleado", fetch = FetchType.LAZY)
+//    private List<MovimientoDinero> transaccion;
+        
     @Column(nullable = true)
     private Date modificadoEn;
     @Column(nullable = true)
@@ -52,17 +52,21 @@ public class Empleado {
 	public Empleado() {
 	}
 
+	
+
 	public Empleado(long id, String email, Perfil perfil, RolEmpleado rolEmpleado, Empresa empresa,
-					MovimientoDinero transaccion, Date modificadoEn, Date creadoEn) {
+			 Date modificadoEn, Date creadoEn) {		
 		this.id = id;
 		this.email = email;
 		this.perfil = perfil;
 		this.rolEmpleado = rolEmpleado;
 		this.empresa = empresa;
-		this.transaccion = transaccion;
+		//this.transaccion = transaccion;
 		this.modificadoEn = modificadoEn;
 		this.creadoEn = creadoEn;
 	}
+
+
 
 	public long getId() {
 		return id;
@@ -104,13 +108,13 @@ public class Empleado {
 		this.empresa = empresa;
 	}
 
-	public MovimientoDinero getTransaccion() {
-		return transaccion;
-	}
-
-	public void setTransaccion(MovimientoDinero transaccion) {
-		this.transaccion = transaccion;
-	}
+//	public List<MovimientoDinero> getTransaccion() {
+//		return transaccion;
+//	}
+//
+//	public void setTransaccion(List<MovimientoDinero> transaccion) {
+//		this.transaccion = transaccion;
+//	}
 
 	public Date getModificadoEn() {
 		return modificadoEn;
@@ -134,9 +138,8 @@ public class Empleado {
 				"id=" + id +
 				", email='" + email + '\'' +
 				", perfil=" + perfil +
-				", nombreEmpleo=" + rolEmpleado +
-//				", empresa=" + empresa +
-//				", transaccion=" + transaccion +
+				", nombreEmpleo=" + rolEmpleado +				
+				//", transaccion=" + transaccion +
 				", modificadoEn=" + modificadoEn +
 				", creadoEn=" + creadoEn +
 				'}';
