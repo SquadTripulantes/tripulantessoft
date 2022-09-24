@@ -17,6 +17,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Entity
 @Table(name = "empleado")
 public class Empleado {
@@ -39,6 +41,7 @@ public class Empleado {
 	        
     @ManyToOne
     @JoinColumn(name = "empresa_id")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Empresa empresa;
 
 //    @OneToMany(mappedBy = "empleado", fetch = FetchType.LAZY)

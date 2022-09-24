@@ -2,6 +2,7 @@ package com.squadtripulantes.servicios;
 
 import com.squadtripulantes.modelo.Empresa;
 import com.squadtripulantes.modelo.MovimientoDinero;
+import com.squadtripulantes.repositorio.EmpresaRepositorio;
 import com.squadtripulantes.repositorio.MovimientoDineroRepositorio;
 import org.springframework.stereotype.Service;
 
@@ -14,24 +15,28 @@ public class MovimientoDineroServicio {
 
 
    private MovimientoDineroRepositorio movimientoDineroRepositorio;
+   private EmpresaRepositorio empresaRepositorio;
 
-    public  MovimientoDineroServicio(MovimientoDineroRepositorio movimientoDineroRepositorio) {
+    public  MovimientoDineroServicio(MovimientoDineroRepositorio movimientoDineroRepositorio, EmpresaRepositorio empresaRepositorio) {
        this.movimientoDineroRepositorio = movimientoDineroRepositorio;
+       this.empresaRepositorio = empresaRepositorio;
     }
 
-    public List<MovimientoDinero> listarMovimientos()
+    public List<MovimientoDinero> listarMovimientos(long idEmpresa)
     {
         List<MovimientoDinero> lista = null;
         try{
-            lista = this.movimientoDineroRepositorio.findAll();
-        }catch(Exception error)
-        {
-            error.printStackTrace();
+	       Optional<Empresa> empresa = this.empresaRepositorio.findById(idEmpresa);
+	       if (empresa.isPresent()) {
+	    	   lista = this.movimientoDineroRepositorio.findByEmpresa(empresa.get());
+	       }
+        }catch(Exception error) {
+            error.printStackTrace();            
         }
         return lista;
     }
 
-    public MovimientoDinero crearMovimientoDinero(MovimientoDinero movimiento)
+    public MovimientoDinero crearMovimientoDinero(long idEmpresa, MovimientoDinero movimiento)
     {
         return this.movimientoDineroRepositorio.save(movimiento);
     }
