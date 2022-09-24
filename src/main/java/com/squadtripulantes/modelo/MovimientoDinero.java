@@ -12,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name = "movimientoDinero")
 public class MovimientoDinero {
@@ -26,11 +28,13 @@ public class MovimientoDinero {
 	private float monto;
 	
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-	@JoinColumn(name = "empleado_id", referencedColumnName = "id", nullable = false)
+	@JoinColumn(name = "f_empleado_id", referencedColumnName = "id", nullable = false)
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	private Empleado empleado;
 	
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-	@JoinColumn(name = "empresa_id", referencedColumnName = "id", nullable = false)
+	@JoinColumn(name = "f_empresa_id", referencedColumnName = "id", nullable = false)
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	private  Empresa empresa;
 	
 	@Column(nullable = true)
@@ -41,79 +45,81 @@ public class MovimientoDinero {
     public MovimientoDinero() {
     }
 
-    public MovimientoDinero(long id, java.lang.String concepto, float monto, Empleado usuario, Empresa empresa , Date creadoEn, Date modificadoEn) {
+    public MovimientoDinero(long id, java.lang.String concepto, float monto, Empleado empleado, Empresa empresa , Date creadoEn, Date modificadoEn) {
         this.id = id;
         this.concepto = concepto;
         this.monto = monto;
-        this.empleado = usuario;
+        this.empleado = empleado;
         this.empresa = empresa;
         this.creadoEn = creadoEn;
         this.modificadoEn = modificadoEn;
     }
 
-    public long getString() {
-        return id;
-    }
+    
 
-    public void setString(long id) {
-        this.id = id;
-    }
+    public long getId() {
+		return id;
+	}
 
-    public java.lang.String getConcepto() {
-        return concepto;
-    }
+	public void setId(long id) {
+		this.id = id;
+	}
 
-    public void setConcepto(java.lang.String concepto) {
-        this.concepto = concepto;
-    }
+	public String getConcepto() {
+		return concepto;
+	}
 
-    public float getMonto() {
-        return monto;
-    }
+	public void setConcepto(String concepto) {
+		this.concepto = concepto;
+	}
 
-    public void setMonto(float monto) {
-        this.monto = monto;
-    }
+	public float getMonto() {
+		return monto;
+	}
 
-    public Empleado getUsuario() {
-        return empleado;
-    }
+	public void setMonto(float monto) {
+		this.monto = monto;
+	}
 
-    public void setUsuario(Empleado usuario) {
-        this.empleado = usuario;
-    }
+	public Empleado getEmpleado() {
+		return empleado;
+	}
 
-    public Empresa getEmpresa() {
-        return empresa;
-    }
+	public void setEmpleado(Empleado empleado) {
+		this.empleado = empleado;
+	}
 
-    public void setEmpresa(Empresa empresa) {
-        this.empresa = empresa;
-    }
+	public Empresa getEmpresa() {
+		return empresa;
+	}
 
-    public Date getCreadoEn() {
-        return creadoEn;
-    }
+	public void setEmpresa(Empresa empresa) {
+		this.empresa = empresa;
+	}
 
-    public void setCreadoEn(Date creadoEn) {
-        this.creadoEn = creadoEn;
-    }
+	public Date getCreadoEn() {
+		return creadoEn;
+	}
 
-    public Date getModificadoEn() {
-        return modificadoEn;
-    }
+	public void setCreadoEn(Date creadoEn) {
+		this.creadoEn = creadoEn;
+	}
 
-    public void setModificadoEn(Date modificadoEn) {
-        this.modificadoEn = modificadoEn;
-    }
+	public Date getModificadoEn() {
+		return modificadoEn;
+	}
 
-    @Override
+	public void setModificadoEn(Date modificadoEn) {
+		this.modificadoEn = modificadoEn;
+	}
+
+	@Override
     public java.lang.String toString() {
         return "MovimientoDinero{" +
                 "id=" + id +
                 ", concepto='" + concepto + '\'' +
                 ", monto=" + monto +
-                ", usuario=" + empleado +
+                ", empleado=" + empleado +
                 ", empresa=" + empresa +
                 ", creadoEn=" + creadoEn +
                 ", modificadoEn=" + modificadoEn +

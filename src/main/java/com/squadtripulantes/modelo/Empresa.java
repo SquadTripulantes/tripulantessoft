@@ -28,13 +28,6 @@ public class Empresa {
 	private String telefono;
 	@Column(nullable = true)
     private String direccion;
-	
-	@OneToMany(mappedBy = "id", fetch = FetchType.LAZY)
-    private List<Empleado> usuario;
-	
-	@OneToMany(mappedBy = "id", fetch = FetchType.LAZY)
-	private List<MovimientoDinero> movimientoDinero;
-    
     @Column(nullable = true)
     private Date creadoEn;
     @Column(nullable = true)
@@ -43,14 +36,12 @@ public class Empresa {
     public Empresa() {
     }
 
-    public Empresa(long id, String nombre, String documento, String telefono, String direccion, List<Empleado> usuario , List<MovimientoDinero>  movimientoDinero, Date creadoEn, Date modificadoEn) {
+    public Empresa(long id, String nombre, String documento, String telefono, String direccion, Date creadoEn, Date modificadoEn) {
         this.id = id;
         this.nombre = nombre;
         this.documento = documento;
         this.telefono = telefono;
         this.direccion = direccion;
-        this.usuario = usuario;
-        this.movimientoDinero = movimientoDinero;
         this.creadoEn = creadoEn;
         this.modificadoEn = modificadoEn;
     }
@@ -94,23 +85,7 @@ public class Empresa {
     public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
-
-    public List<Empleado> getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(List<Empleado> usuario) {
-        this.usuario = usuario;
-    }
-
-    public List<MovimientoDinero> getMovimientoDinero() {
-        return movimientoDinero;
-    }
-
-    public void setMovimientoDinero(List<MovimientoDinero> movimientoDinero) {
-        this.movimientoDinero = movimientoDinero;
-    }
-
+    
     public Date getCreadoEn() {
         return creadoEn;
     }
@@ -135,8 +110,6 @@ public class Empresa {
                 ", documento='" + documento + '\'' +
                 ", telefono='" + telefono + '\'' +
                 ", direccion='" + direccion + '\'' +
-                ", usuario=" + usuario +
-                ", movimientoDinero=" + movimientoDinero +
                 ", creadoEn=" + creadoEn +
                 ", modificadoEn=" + modificadoEn +
                 '}';
